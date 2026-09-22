@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wedding checklist · 2 & 3 Oct 2026</title>
+<meta name="theme-color" content="#B4232A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Wedding">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --paper:#FFF9F2; --card:#FFFFFF; --ink:#26140F; --ink2:#4A2E25;
+  --red:#B4232A; --red-soft:#F7DEDA; --gold:#9A6E14; --gold-soft:#F6E7C4;
+  --line:#E4D3C6; --done:#6E5B52; --wa:#25D366; --wa-ink:#062E15;
+  --base:18px;
+}
+:root[data-size="big"]{--base:22px}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 200px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif;font-size:var(--base);font-weight:500;line-height:1.45;-webkit-text-size-adjust:100%}
+button{font:inherit;color:inherit;cursor:pointer}
+input,textarea{font:inherit;color:inherit}
+svg{display:block}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:2px solid var(--line);padding:12px 16px 10px}
+.top-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+h1{margin:0;font-size:1.25em;font-weight:800;letter-spacing:-.01em}
+.count{font-size:.85em;color:var(--red);font-weight:800;margin-top:2px}
+.aa{border:2px solid var(--ink);background:var(--card);border-radius:6px;padding:6px 12px;font-weight:800;min-width:52px;min-height:44px}
+.aa[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.bar{height:10px;background:var(--line);border-radius:3px;margin-top:10px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--red);transition:width .3s}
+.bar-label{display:flex;justify-content:space-between;font-size:.85em;font-weight:700;margin-top:4px}
+.jump{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:10px}
+.jump button{grid-column:span 2;border:2px solid var(--line);background:var(--card);border-radius:6px;padding:8px 4px;font-weight:700;font-size:.85em;white-space:nowrap;min-height:44px;overflow:hidden;text-overflow:ellipsis}
+.jump button.hot{grid-column:span 3;border-color:var(--red);color:var(--red);background:var(--red-soft)}
+.jump button.late{grid-column:1 / -1;border-color:var(--gold);color:var(--gold);background:var(--gold-soft)}
+.jump button.ref{grid-column:1 / -1}
+.jump button.active{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.jump button.hot.active{background:var(--red);border-color:var(--red);color:#fff}
+.jump button.late.active{background:var(--gold);border-color:var(--gold);color:#fff}
+
+/* sections */
+main{padding:8px 16px 110px;max-width:640px;margin:0 auto}
+section{margin-top:24px}
+.day{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:0 0 8px;border-bottom:3px solid var(--ink)}
+.day h2{margin:0;font-size:1.3em;font-weight:800;line-height:1.15}
+.day h2 small{display:block;font-size:.65em;font-weight:700;color:var(--ink2);margin-top:2px}
+.day .tally{font-weight:800;color:var(--ink2);white-space:nowrap}
+.day .tally.all{color:var(--red)}
+.day .tally.late{color:var(--gold)}
+section.big .day{border-bottom-color:var(--red)}
+section.big .day h2{color:var(--red)}
+section.over .day{border-bottom-color:var(--gold)}
+section.over .day h2{color:var(--gold)}
+.note{font-size:.9em;font-weight:700;color:var(--ink2);margin:10px 0 0}
+
+ul{list-style:none;margin:0;padding:0}
+li{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+li.next{background:var(--gold-soft);margin:0 -12px;padding:12px;border-radius:8px;border-bottom:0;border:2px solid var(--gold)}
+.box{flex:0 0 auto;width:34px;height:34px;margin-top:2px;border:3px solid var(--ink);border-radius:5px;background:var(--card);display:grid;place-items:center;padding:0}
+.box svg{width:22px;height:22px;display:none}
+li.done .box{background:var(--red);border-color:var(--red)}
+li.done .box svg{display:block}
+.txt{flex:1;min-width:0;text-align:left;background:none;border:0;padding:0;line-height:1.4;font-weight:600}
+li.done .txt{color:var(--done);text-decoration:line-through;text-decoration-thickness:2px}
+.chip{display:inline-block;font-weight:800;padding:1px 8px;border-radius:4px;margin-right:6px;font-size:.9em}
+.time{background:var(--gold-soft);color:var(--gold)}
+.from{background:var(--gold-soft);color:var(--gold);font-size:.8em}
+.nextchip{background:var(--gold);color:#fff}
+.delta{display:block;font-size:.85em;font-weight:800;color:var(--gold);margin-top:2px}
+li.done .chip{opacity:.6}
+.edit{flex:0 0 auto;border:0;background:none;color:var(--ink2);padding:6px;min-width:40px;min-height:40px;border-radius:6px}
+.edit svg{width:20px;height:20px;margin:auto}
+.edit:hover,.edit:focus-visible{background:var(--line)}
+
+/* inline editor */
+.editor{display:block;padding:12px;border:2px solid var(--ink);border-radius:8px;background:var(--card);margin:8px 0}
+.editor label{display:block;font-weight:800;font-size:.85em;margin:10px 0 4px}
+.editor input,.editor textarea{width:100%;border:2px solid var(--line);border-radius:6px;padding:10px 12px;background:var(--paper);min-height:48px}
+.editor textarea{resize:vertical;min-height:80px}
+.days{display:flex;flex-wrap:wrap;gap:6px}
+.days button{border:2px solid var(--line);background:var(--paper);border-radius:6px;padding:8px 10px;font-weight:700;font-size:.85em;min-height:44px}
+.days button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.row button{border:2px solid var(--ink);background:var(--card);border-radius:6px;padding:8px 12px;font-weight:800;font-size:.9em;min-height:44px}
+.row button.save{background:var(--ink);color:var(--paper)}
+.row button:disabled{opacity:.35}
+.row button.danger{border-color:var(--red);color:var(--red);margin-left:auto}
+
+.add{display:flex;gap:8px;margin-top:12px}
+.add input{flex:1;min-width:0;border:2px solid var(--line);border-radius:6px;padding:10px 12px;background:var(--card);min-height:48px}
+.add input::placeholder{color:var(--ink2);opacity:.8}
+.add button{border:2px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:6px;padding:0 16px;font-weight:800;min-height:48px}
+
+/* reference card */
+.ref h3{margin:16px 0 6px;font-size:1em;font-weight:800;color:var(--ink2)}
+.ref .item{display:grid;grid-template-columns:1fr auto;gap:6px 10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.ref .who{font-weight:800}
+.ref .who small{display:block;font-weight:700;color:var(--ink2);font-size:.8em}
+.ref input{grid-column:1 / -1;border:2px solid var(--line);border-radius:6px;padding:8px 12px;background:var(--card);min-height:44px;width:100%}
+.ref a.call{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--ink);border-radius:6px;padding:6px 12px;font-weight:800;text-decoration:none;color:var(--ink);min-height:44px;background:var(--card)}
+.ref a.call svg{width:20px;height:20px}
+.ref a.call.off{opacity:.35;pointer-events:none}
+
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.tools button{border:2px solid var(--line);background:var(--card);border-radius:6px;padding:8px 12px;font-weight:700;font-size:.85em;min-height:44px}
+.tools button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.tools a{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--wa);background:var(--wa);color:var(--wa-ink);text-decoration:none;border-radius:6px;padding:8px 12px;font-weight:800;font-size:.85em;min-height:44px}
+.tools a svg{width:20px;height:20px}
+.status{font-size:.85em;font-weight:700;color:var(--ink2);margin-top:14px;min-height:1.2em}
+
+.share{position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);z-index:6;background:var(--ink);color:var(--paper);border-radius:8px;padding:12px 14px;display:none;align-items:center;gap:10px;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.share.show{display:flex}
+.share .msg{flex:1;min-width:0;font-weight:700;font-size:.9em;line-height:1.3}
+.share #share-link{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;background:var(--wa);color:var(--wa-ink);border:0;font-weight:800;border-radius:6px;padding:10px 12px;min-height:44px;white-space:nowrap}
+.share #share-link svg{width:22px;height:22px}
+.share .close{flex:0 0 auto;border:0;background:none;color:var(--paper);font-size:1.4em;line-height:1;padding:4px 6px;min-width:36px;min-height:36px}
+
+:root[data-hide="1"] li.done{display:none}
+.overlay{position:fixed;inset:0;z-index:20;background:rgba(38,20,15,.55);display:none;align-items:flex-end;justify-content:center;padding:12px}
+.overlay.show{display:flex}
+.sheet{width:100%;max-width:640px;max-height:calc(100% - env(safe-area-inset-top,0px) - 24px);background:var(--paper);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;box-shadow:0 -6px 30px rgba(0,0,0,.3);margin-bottom:env(safe-area-inset-bottom,0px)}
+.sheet h2{margin:0;font-size:1.1em;font-weight:800}
+.sheet p{margin:0;font-size:.85em;font-weight:700;color:var(--ink2)}
+.sheet textarea{width:100%;flex:1;min-height:200px;border:2px solid var(--line);border-radius:8px;padding:12px;background:var(--card);resize:vertical;line-height:1.45}
+.sheet .row{margin-top:0}
+.sheet .row a{display:inline-flex;align-items:center;gap:6px;background:var(--wa);color:var(--wa-ink);border:2px solid var(--wa);text-decoration:none;font-weight:800;border-radius:6px;padding:8px 14px;min-height:44px}
+.sheet .row a svg{width:22px;height:22px}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+
+<script id="state" type="application/json">{"updatedAt":1790070273826,"sections":[{"id":"tmr","title":"Wed 23 Sep","due":"2026-09-23","tasks":[{"id":"a1","t":"Check jacket pockets","done":true,"doneAt":1790070272474},{"id":"a2","t":"Check with TC if the last 2 chapters can be combined on Sunday 27/9","done":true,"doneAt":1790070273362},{"id":"umucef4j0","t":"Ask Pastor Kelvin to assist in opening prayer at the dinner","done":true,"doneAt":1790070273826}]},{"id":"wk","title":"By Sun 27 Sep","due":"2026-09-27","tasks":[{"id":"b1","t":"Ask TC if we need to give ang pao to Pr Gilbert","done":false},{"id":"b5","t":"After TC replies: tell the family whether the last 2 chapters are combined on Sunday 27/9","done":false},{"id":"b2","t":"Get new bed and wash mattress cover","done":false},{"id":"b3","t":"Bring groomsmen to buy what they need for their attire on the day","done":false},{"id":"b4","t":"Inform all relatives coming to dinner at HXC to arrive at 5.30pm for the tea ceremony","done":false}]},{"id":"nxt","title":"By Thu 1 Oct","due":"2026-10-01","tasks":[{"id":"c1","t":"Cut hair and shave","done":false},{"id":"c5","t":"If TC says yes: prepare ang pao for Pr Gilbert","done":false},{"id":"c4","t":"Iron the shirt with the birds design for Friday's ROM","done":false},{"id":"c2","t":"Pack: 2 jackets, 4 shirts, tie, belt, shoes, socks, white t-shirt from China, and clothes for 2 days in the hotel after the wedding","done":false},{"id":"c3","t":"Pack tea bags for the tea ceremony","done":false}]},{"id":"fri","title":"Fri 2 Oct","sub":"ROM ceremony","date":"2026-10-02","big":true,"tasks":[{"id":"d1","t":"Wear the ironed shirt with the birds design and jeans for the ROM ceremony","done":false},{"id":"d2","time":"1.45pm","t":"Bring father and yourself to church","done":false},{"id":"d3","t":"Back to United Point to check in all guests after ROM","done":false},{"id":"d4","time":"4.55pm","t":"Be at church for dinner with all family members — except father and 大妹、大嫂、小妹和妹夫","done":false}]},{"id":"sat","title":"Sat 3 Oct","sub":"Wedding day","date":"2026-10-03","big":true,"tasks":[{"id":"e1","time":"5.30am","t":"Dress up and get ready for photographs","done":false},{"id":"e2","time":"6.50am","t":"Be downstairs and get into the car with David to go one round at her unit. Ethan opens the car door for you","done":false},{"id":"e3","time":"7.00am","t":"At her unit for long-life noodles","done":false},{"id":"e4","time":"8.20am","t":"Get into Jun Quan's car to church with the 3 groomsmen and 洁莹","done":false},{"id":"e5","t":"Yiyi looks after the rings and ang pao. The other 2 look after the flower for father. Put all ang pao from guests in your jacket pocket, then pass to David at United Point","done":false}]}],"contacts":[{"id":"p1","who":"TC","role":"Wedding coordinator / church","phone":""},{"id":"p2","who":"Pr Gilbert","role":"Pastor","phone":""},{"id":"p3","who":"David","role":"Car on Saturday · collects the ang pao at United Point","phone":""},{"id":"p4","who":"Ethan","role":"Opens the car door, Saturday 6.50am","phone":""},{"id":"p5","who":"Jun Quan","role":"Drives you to church, Saturday 8.20am","phone":""},{"id":"p6","who":"Yiyi","role":"Holds the rings and ang pao","phone":""},{"id":"p7","who":"洁莹","role":"Rides to church with you on Saturday","phone":""},{"id":"p8","who":"Groomsman 1","role":"","phone":""},{"id":"p9","who":"Groomsman 2","role":"","phone":""},{"id":"p10","who":"Groomsman 3","role":"","phone":""}],"places":[{"id":"q1","who":"Church","role":"ROM Fri 1.45pm · dinner Fri 4.55pm · wedding Sat","addr":""},{"id":"q2","who":"United Point","role":"Guest check-in after ROM · ang pao handover","addr":""},{"id":"q3","who":"HXC","role":"Tea ceremony 5.30pm and dinner","addr":""},{"id":"q4","who":"Her unit","role":"Saturday 6.50am one round · 7.00am noodles","addr":""},{"id":"q5","who":"Hotel","role":"2 nights after the wedding","addr":""}]}</script>
+
+<header class="top">
+  <div class="top-row">
+    <div>
+      <h1>Wedding checklist</h1>
+      <div class="count" id="countdown"></div>
+    </div>
+    <button class="aa" id="aa" aria-pressed="false" aria-label="Larger text">Aa</button>
+  </div>
+  <div class="bar"><i id="fill"></i></div>
+  <div class="bar-label"><span id="done-label">0 of 0 done</span><span id="left-label"></span></div>
+  <nav class="jump" id="jump" aria-label="Jump to a day"></nav>
+</header>
+
+<main id="main"></main>
+
+<div class="overlay" id="preview" role="dialog" aria-modal="true" aria-labelledby="pv-title">
+  <div class="sheet">
+    <h2 id="pv-title">Preview message</h2>
+    <p>Edit anything before it goes. Sends to her WhatsApp.</p>
+    <textarea id="pv-text" aria-label="Message text"></textarea>
+    <div class="row"><a id="pv-send" href="#" target="_blank" rel="noopener"></a><button type="button" id="pv-copy">Copy</button><button type="button" id="pv-cancel" class="danger">Cancel</button></div>
+  </div>
+</div>
+
+<div class="share" id="share" role="status">
+  <div class="msg" id="share-msg"></div>
+  <button type="button" id="share-link"></button>
+  <button class="close" type="button" id="share-close" aria-label="Dismiss">×</button>
+</div>
+
+<!-- build 20260922-1003 -->
+<script>
+(function(){
+  var TEMPLATE = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  var KEY = 'wedding-checklist-v1';
+  var WA_NUMBER = '60128777833'; // fiancée's WhatsApp
+  var state = JSON.parse(document.getElementById('state').textContent);
+  var artifactApi = null, publishTimer = null, dismissed = false, editingId = null, autoScrolled = false;
+
+  try {
+    var ls = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (ls && ls.updatedAt > state.updatedAt) state = ls;
+    if (localStorage.getItem(KEY + ':size') === 'big') document.documentElement.dataset.size = 'big';
+    if (localStorage.getItem(KEY + ':hide') === '1') document.documentElement.dataset.hide = '1';
+  } catch (e) {}
+  state.contacts = state.contacts || []; state.places = state.places || [];
+
+  var main = document.getElementById('main'), jump = document.getElementById('jump');
+  var CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>';
+  var PEN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4l10.5-10.5a2.1 2.1 0 0 0-3-3L5 17v3z"/><path d="M13.5 6.5l3 3"/></svg>';
+  var PHONE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>';
+  var WA = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.4 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-1c-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.4-1.5-.9-.8-1.5-1.8-1.6-2.1-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.5-.4-.5-.6-.5h-.5z"/></svg>';
+  document.getElementById('share-link').innerHTML = WA + ' Preview & send';
+  document.getElementById('pv-send').innerHTML = WA + ' Send on WhatsApp';
+  var pendingText = '';
+  function openPreview(text, after){
+    var ta = document.getElementById('pv-text'), send = document.getElementById('pv-send');
+    ta.value = text; send.href = waLink(text);
+    ta.oninput = function(){ send.href = waLink(ta.value); };
+    send.onclick = function(){ setTimeout(function(){ closePreview(); if (after) after(); }, 400); };
+    document.getElementById('preview').classList.add('show');
+  }
+  function closePreview(){ document.getElementById('preview').classList.remove('show'); }
+  document.getElementById('pv-cancel').onclick = closePreview;
+  document.getElementById('preview').onclick = function(e){ if (e.target === this) closePreview(); };
+  document.getElementById('pv-copy').onclick = function(){
+    var text = document.getElementById('pv-text').value;
+    var ok = function(){ this.textContent = 'Copied'; setTimeout(function(){ document.getElementById('pv-copy').textContent = 'Copy'; }, 1500); }.bind(this);
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, function(){ fallbackCopy(text); ok(); }); else { fallbackCopy(text); ok(); }
+  };
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function dayKey(d){ return d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate()); }
+  function todayKey(){ return dayKey(new Date()); }
+  function parseKey(k){ var p = k.split('-'); return new Date(+p[0], p[1]-1, +p[2]); }
+  function daysUntil(k){ var n = new Date(); return Math.round((parseKey(k) - new Date(n.getFullYear(), n.getMonth(), n.getDate())) / 864e5); }
+  function relLabel(k, isDue){
+    var d = daysUntil(k);
+    if (d === 0) return 'Today';
+    if (d === 1) return 'Tomorrow';
+    if (d > 1) return 'in ' + d + ' days';
+    return (isDue ? 'Date passed ' : '') + (-d) + (d === -1 ? ' day ago' : ' days ago');
+  }
+  function sectionDate(sec){ return sec.date || sec.due || null; }
+  function isLate(sec){ return !!sec.due && sec.due < todayKey(); }
+  function isToday(sec){ return sectionDate(sec) === todayKey(); }
+  function canAdd(sec){ var k = sectionDate(sec); return !k || k >= todayKey(); }
+  function parseTime(t){ var m = /(\d{1,2})\.(\d{2})\s*(am|pm)/i.exec(t || ''); if (!m) return null; var h = +m[1] % 12; if (m[3].toLowerCase() === 'pm') h += 12; return h * 60 + +m[2]; }
+  function deltaText(t){
+    var mins = parseTime(t); if (mins === null) return '';
+    var n = new Date(), now = n.getHours() * 60 + n.getMinutes(), d = mins - now;
+    if (d === 0) return 'Now';
+    if (d > 0) return d >= 60 ? 'in ' + Math.floor(d/60) + ' h ' + (d%60) + ' min' : 'in ' + d + ' min';
+    return (-d >= 60 ? Math.floor(-d/60) + ' h ' + (-d%60) + ' min' : (-d) + ' min') + ' ago';
+  }
+  function isSameDay(ts){ return !!ts && dayKey(new Date(ts)) === todayKey(); }
+
+  /* ---------- render ---------- */
+  function render(){
+    var total = 0, done = 0;
+    main.innerHTML = ''; jump.innerHTML = '';
+    var overdue = [];
+    state.sections.forEach(function(sec){ if (isLate(sec)) sec.tasks.forEach(function(t){ if (!t.done) overdue.push({t:t, from:sec}); }); });
+    var list = state.sections.slice();
+    if (overdue.length) list.unshift({id:'over', title:'Overdue', sub:'Missed the date — do these today', over:true, tasks:overdue.map(function(o){ return o.t; }), from:overdue.map(function(o){ return o.from; })});
+
+    list.forEach(function(sec){
+      var d = sec.tasks.filter(function(t){ return t.done; }).length;
+      if (!sec.over) { total += sec.tasks.length; done += d; }
+      var late = !sec.over && isLate(sec) && d < sec.tasks.length;
+      var key = sectionDate(sec);
+      var sub = sec.over ? sec.sub : (sec.sub ? sec.sub + ' · ' : '') + (key ? relLabel(key, !!sec.due) : '');
+
+      var jb = document.createElement('button');
+      jb.textContent = sec.over ? 'Overdue · ' + sec.tasks.length : sec.title;
+      jb.className = sec.big ? 'hot' : sec.over ? 'late' : '';
+      jb.dataset.sec = sec.id;
+      jb.onclick = function(){ setActive(sec.id); document.getElementById('sec-' + sec.id).scrollIntoView({behavior:'smooth', block:'start'}); };
+      jump.appendChild(jb);
+
+      var s = document.createElement('section');
+      s.id = 'sec-' + sec.id;
+      s.className = sec.big ? 'big' : sec.over ? 'over' : '';
+      var all = sec.tasks.length && d === sec.tasks.length;
+      s.innerHTML =
+        '<div class="day"><h2>' + esc(sec.title) + '<small>' + esc(sub) + '</small></h2>' +
+        '<span class="tally' + (all ? ' all' : late ? ' late' : '') + '">' + (all ? 'All done' : late ? (sec.tasks.length - d) + ' overdue' : d + ' / ' + sec.tasks.length) + '</span></div>' +
+        '<ul></ul>' +
+        (sec.over ? '' : canAdd(sec) ? '<div class="add"><input type="text" placeholder="Add a task" aria-label="Add a task to ' + esc(sec.title) + '"><button type="button">Add</button></div>' : '<p class="note">This date has passed. Add new tasks to a later day.</p>');
+      var ul = s.querySelector('ul');
+
+      // on the day itself, the first unticked task is "next"
+      var nextId = null;
+      if (!sec.over && isToday(sec)) { var n = sec.tasks.filter(function(t){ return !t.done; })[0]; if (n) nextId = n.id; }
+
+      sec.tasks.forEach(function(t, i){
+        var home = sec.over ? sec.from[i] : sec;
+        if (editingId === t.id && !sec.over) { ul.appendChild(editorFor(t, home)); return; }
+        var li = document.createElement('li');
+        li.className = (t.done ? 'done' : '') + (t.id === nextId ? ' next' : '');
+        var delta = (!t.done && isToday(home)) ? deltaText(t.time) : '';
+        li.innerHTML =
+          '<button class="box" type="button" role="checkbox" aria-checked="' + t.done + '" aria-label="' + esc(t.t) + '">' + CHECK + '</button>' +
+          '<button class="txt" type="button">' +
+            (t.id === nextId ? '<span class="chip nextchip">Next</span>' : '') +
+            (sec.over ? '<span class="chip from">' + esc(home.title) + '</span>' : '') +
+            (t.time ? '<span class="chip time">' + esc(t.time) + '</span>' : '') + esc(t.t) +
+            (delta ? '<span class="delta">' + esc(delta) + '</span>' : '') +
+          '</button>' +
+          '<button class="edit" type="button" aria-label="Edit task">' + PEN + '</button>';
+        var toggle = function(){ t.done = !t.done; if (t.done) t.doneAt = Date.now(); else delete t.doneAt; dismissed = false; save(); render(); };
+        li.children[0].onclick = toggle;
+        li.children[1].onclick = toggle;
+        li.children[2].onclick = function(){ editingId = t.id; render(); var el = document.querySelector('.editor textarea'); if (el) el.focus(); };
+        ul.appendChild(li);
+      });
+
+      var inp = s.querySelector('.add input'), addBtn = s.querySelector('.add button');
+      if (inp) {
+        var add = function(){
+          var v = inp.value.trim(); if (!v) return;
+          sec.tasks.push({id: 'u' + Date.now().toString(36), t: v, done: false});
+          inp.value = ''; save(); render();
+          var again = document.querySelector('#sec-' + sec.id + ' .add input'); if (again) again.focus();
+        };
+        addBtn.onclick = add;
+        inp.onkeydown = function(e){ if (e.key === 'Enter') add(); };
+      }
+      main.appendChild(s);
+    });
+
+    renderReference();
+    renderTools();
+
+    document.getElementById('fill').style.width = (total ? done / total * 100 : 0) + '%';
+    document.getElementById('done-label').textContent = done + ' of ' + total + ' done';
+    document.getElementById('left-label').textContent = total - done ? (total - done) + ' to go' : 'Everything done 🎉';
+    trackActive();
+    updateShareBar();
+
+    // on a big day, open straight at that day's list
+    if (!autoScrolled) {
+      autoScrolled = true;
+      var today = state.sections.filter(isToday)[0];
+      if (today && !overdue.length) setTimeout(function(){ var el = document.getElementById('sec-' + today.id); if (el) el.scrollIntoView({block:'start'}); }, 50);
+    }
+  }
+
+  /* ---------- inline editor ---------- */
+  function editorFor(t, home){
+    var li = document.createElement('li');
+    li.className = 'editor';
+    var idx = home.tasks.indexOf(t);
+    li.innerHTML =
+      '<label>Task</label><textarea>' + esc(t.t) + '</textarea>' +
+      '<label>Time (e.g. 6.50am) — leave blank if none</label><input type="text" value="' + esc(t.time || '') + '">' +
+      '<label>Which day</label><div class="days"></div>' +
+      '<div class="row"><button type="button" class="save">Save</button><button type="button" class="cancel">Cancel</button>' +
+      '<button type="button" class="up"' + (idx === 0 ? ' disabled' : '') + '>Move up</button><button type="button" class="down"' + (idx === home.tasks.length - 1 ? ' disabled' : '') + '>Move down</button>' +
+      '<button type="button" class="danger">Delete</button></div>';
+    var target = home.id, days = li.querySelector('.days');
+    state.sections.forEach(function(sec){
+      var b = document.createElement('button'); b.type = 'button'; b.textContent = sec.title;
+      b.setAttribute('aria-pressed', String(sec.id === target));
+      b.onclick = function(){ target = sec.id; Array.prototype.forEach.call(days.children, function(x){ x.setAttribute('aria-pressed', String(x === b)); }); };
+      days.appendChild(b);
+    });
+    li.querySelector('.save').onclick = function(){
+      var v = li.querySelector('textarea').value.trim(); if (!v) return;
+      t.t = v; var tm = li.querySelector('input').value.trim(); if (tm) t.time = tm; else delete t.time;
+      if (target !== home.id) {
+        home.tasks = home.tasks.filter(function(x){ return x !== t; });
+        state.sections.filter(function(s){ return s.id === target; })[0].tasks.push(t);
+      }
+      editingId = null; save(); render();
+    };
+    li.querySelector('.cancel').onclick = function(){ editingId = null; render(); };
+    li.querySelector('.up').onclick = function(){ home.tasks.splice(idx, 1); home.tasks.splice(idx - 1, 0, t); save(); render(); };
+    li.querySelector('.down').onclick = function(){ home.tasks.splice(idx, 1); home.tasks.splice(idx + 1, 0, t); save(); render(); };
+    li.querySelector('.danger').onclick = function(){
+      if (confirm('Delete this task?\n\n' + t.t)) { home.tasks = home.tasks.filter(function(x){ return x !== t; }); editingId = null; save(); render(); }
+    };
+    return li;
+  }
+
+  /* ---------- people & places ---------- */
+  function renderReference(){
+    var s = document.createElement('section');
+    s.id = 'sec-ref'; s.className = 'ref';
+    s.innerHTML = '<div class="day"><h2>People & places<small>Fill in numbers and addresses once, then tap to call or open the map</small></h2></div>' +
+                  '<h3>People</h3><div id="people"></div><h3>Places</h3><div id="places"></div>';
+    var jb = document.createElement('button'); jb.textContent = 'People & places'; jb.className = 'ref'; jb.dataset.sec = 'ref';
+    jb.onclick = function(){ setActive('ref'); s.scrollIntoView({behavior:'smooth', block:'start'}); };
+    jump.appendChild(jb);
+    var people = s.querySelector('#people'), places = s.querySelector('#places');
+    state.contacts.forEach(function(c){
+      var div = document.createElement('div'); div.className = 'item';
+      var tel = (c.phone || '').replace(/[^\d+]/g, '');
+      div.innerHTML = '<div class="who">' + esc(c.who) + (c.role ? '<small>' + esc(c.role) + '</small>' : '') + '</div>' +
+        '<a class="call' + (tel ? '' : ' off') + '" href="' + (tel ? 'tel:' + esc(tel) : '#') + '">' + PHONE + 'Call</a>' +
+        '<input type="tel" placeholder="Phone number" value="' + esc(c.phone || '') + '" aria-label="Phone for ' + esc(c.who) + '">';
+      div.querySelector('input').onchange = function(){ c.phone = this.value.trim(); save(); render(); };
+      people.appendChild(div);
+    });
+    state.places.forEach(function(p){
+      var div = document.createElement('div'); div.className = 'item';
+      var q = (p.addr || '').trim();
+      div.innerHTML = '<div class="who">' + esc(p.who) + (p.role ? '<small>' + esc(p.role) + '</small>' : '') + '</div>' +
+        '<a class="call' + (q ? '' : ' off') + '" href="' + (q ? 'https://maps.google.com/?q=' + encodeURIComponent(q) : '#') + '" target="_blank" rel="noopener">Map</a>' +
+        '<input type="text" placeholder="Address or Waze name" value="' + esc(p.addr || '') + '" aria-label="Address for ' + esc(p.who) + '">';
+      div.querySelector('input').onchange = function(){ p.addr = this.value.trim(); save(); render(); };
+      places.appendChild(div);
+    });
+    main.appendChild(s);
+  }
+
+  /* ---------- tools ---------- */
+  function renderTools(){
+    var tools = document.createElement('div'); tools.className = 'tools';
+    var hide = document.documentElement.dataset.hide === '1';
+    tools.innerHTML = '<a id="share-all" href="#">' + WA + ' Send progress</a>' +
+      '<button type="button" id="copy">Copy whole list</button>' +
+      '<button type="button" id="hide" aria-pressed="' + hide + '">' + (hide ? 'Showing to-do only' : 'Hide done tasks') + '</button>' +
+      '<button type="button" id="reset">Untick everything</button>';
+    tools.querySelector('#share-all').onclick = function(e){ e.preventDefault(); openPreview(progressText(false)); };
+    tools.querySelector('#copy').onclick = function(){
+      var text = progressText(true) + '\n\n' + referenceText();
+      var ok = function(){ setStatus('Copied — paste it into Notes or WhatsApp as a backup'); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, function(){ fallbackCopy(text); ok(); });
+      else { fallbackCopy(text); ok(); }
+    };
+    tools.querySelector('#hide').onclick = function(){
+      var on = document.documentElement.dataset.hide === '1' ? '' : '1';
+      if (on) document.documentElement.dataset.hide = '1'; else delete document.documentElement.dataset.hide;
+      try { localStorage.setItem(KEY + ':hide', on); } catch (e) {}
+      render();
+    };
+    tools.querySelector('#reset').onclick = function(){
+      if (confirm('Untick every task?')) { state.sections.forEach(function(s){ s.tasks.forEach(function(t){ t.done = false; delete t.doneAt; }); }); save(); render(); }
+    };
+    main.appendChild(tools);
+    var st = document.createElement('div'); st.className = 'status'; st.id = 'status'; main.appendChild(st);
+  }
+  function fallbackCopy(text){ var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} document.body.removeChild(ta); }
+
+  /* ---------- text & sharing ---------- */
+  function waLink(text){ return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text); }
+  function counts(){ var tot = 0, d = 0; state.sections.forEach(function(s){ s.tasks.forEach(function(t){ tot++; if (t.done) d++; }); }); return {tot:tot, done:d}; }
+  function progressText(includeDone){
+    var c = counts();
+    var lines = ['💍 Wedding checklist: ' + c.done + '/' + c.tot + ' done'];
+    state.sections.forEach(function(sec){
+      var items = sec.tasks.filter(function(t){ return includeDone || !t.done; });
+      if (!items.length) return;
+      var left = sec.tasks.filter(function(t){ return !t.done; }).length;
+      lines.push('', sec.title + (sec.sub ? ' · ' + sec.sub : '') + (isLate(sec) && left ? ' ⚠️ OVERDUE' : '') + ' (' + left + ' left):');
+      lines.push(items.map(function(t){ return (t.done ? '✅ ' : '⬜ ') + (t.time ? t.time + ' ' : '') + t.t; }).join('\n'));
+    });
+    if (c.done === c.tot) lines.push('', 'Everything done 🎉');
+    return lines.join('\n');
+  }
+  function referenceText(){
+    var lines = ['People:'];
+    state.contacts.forEach(function(c){ lines.push('• ' + c.who + (c.role ? ' (' + c.role + ')' : '') + (c.phone ? ': ' + c.phone : '')); });
+    lines.push('', 'Places:');
+    state.places.forEach(function(p){ lines.push('• ' + p.who + (p.role ? ' (' + p.role + ')' : '') + (p.addr ? ': ' + p.addr : '')); });
+    return lines.join('\n');
+  }
+  function todayDone(){ var out = []; state.sections.forEach(function(sec){ sec.tasks.forEach(function(t){ if (t.done && isSameDay(t.doneAt)) out.push({t:t, sec:sec}); }); }); return out; }
+  function updateShareBar(){
+    var list = todayDone(), bar = document.getElementById('share');
+    if (!list.length || dismissed) { bar.classList.remove('show'); return; }
+    var c = counts(), n = list.length;
+    document.getElementById('share-msg').textContent = n + (n === 1 ? ' task' : ' tasks') + ' done today · ' + c.done + '/' + c.tot + ' overall';
+    var text = '✅ Done today (' + n + '):\n' + list.map(function(x){ return '✔ ' + (x.t.time ? x.t.time + ' ' : '') + x.t.t; }).join('\n') + '\n\n' + c.done + '/' + c.tot + ' done overall, ' + (c.tot - c.done) + ' to go';
+    pendingText = text;
+    bar.classList.add('show');
+  }
+  function hideShare(){ dismissed = true; updateShareBar(); }
+  document.getElementById('share-close').onclick = hideShare;
+  document.getElementById('share-link').onclick = function(){ openPreview(pendingText, hideShare); };
+
+  /* ---------- chips follow scroll ---------- */
+  function setActive(id){ Array.prototype.forEach.call(jump.children, function(b){ b.classList.toggle('active', b.dataset.sec === id); }); }
+  function trackActive(){
+    var headerBottom = document.querySelector('.top').getBoundingClientRect().bottom + 8, current = null;
+    Array.prototype.forEach.call(main.querySelectorAll('section'), function(el){
+      if (current === null || el.getBoundingClientRect().top <= headerBottom + 40) current = el.id.replace('sec-', '');
+    });
+    setActive(current);
+  }
+  window.addEventListener('scroll', trackActive, {passive:true});
+
+  /* ---------- countdown ---------- */
+  function countdown(){
+    var dR = daysUntil('2026-10-02'), dW = daysUntil('2026-10-03'), el = document.getElementById('countdown');
+    if (dW > 1) el.textContent = dW + ' days to the wedding · ROM ' + (dR === 0 ? 'today' : dR === 1 ? 'tomorrow' : 'in ' + dR);
+    else if (dW === 1) el.textContent = 'Today is ROM day. Wedding tomorrow.';
+    else if (dW === 0) el.textContent = 'Today is the wedding day 🎊';
+    else el.textContent = 'Married ' + (-dW) + ' day' + (dW === -1 ? '' : 's') + ' ago 💍';
+  }
+
+  /* ---------- persistence ---------- */
+  function save(){
+    state.updatedAt = Date.now();
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+    if (artifactApi) { clearTimeout(publishTimer); publishTimer = setTimeout(publish, 2500); setStatus('Saving…'); }
+  }
+  function setStatus(msg){ var el = document.getElementById('status'); if (el) el.textContent = msg; }
+  function publish(){
+    if (editingId) { publishTimer = setTimeout(publish, 2500); return; } // don't reload mid-edit
+    var json = JSON.stringify(state).replace(/<\//g, '<\\/');
+    var html = TEMPLATE.replace(/(<script id="state" type="application\/json">)[\s\S]*?(<\/script>)/, function(m, a, b){ return a + json + b; });
+    artifactApi.publish(html).then(function(){ setStatus('Saved to this page'); })
+      .catch(function(err){ setStatus(err && err.code === 'conflict' ? 'Reloading latest version…' : 'Kept on this device only — check your connection'); });
+  }
+
+  document.getElementById('aa').onclick = function(){
+    var big = document.documentElement.dataset.size === 'big';
+    if (big) delete document.documentElement.dataset.size; else document.documentElement.dataset.size = 'big';
+    this.setAttribute('aria-pressed', String(!big));
+    try { localStorage.setItem(KEY + ':size', big ? '' : 'big'); } catch (e) {}
+  };
+  document.getElementById('aa').setAttribute('aria-pressed', String(document.documentElement.dataset.size === 'big'));
+
+  countdown(); render();
+  setInterval(function(){ // keeps "in 20 min" fresh on the day itself, without wiping anything being typed
+    var typing = Array.prototype.some.call(main.querySelectorAll('input'), function(i){ return i.value && i.type !== 'tel' && !i.closest('.ref'); }) || document.activeElement && document.activeElement.tagName === 'INPUT';
+    if (!editingId && !typing && state.sections.some(isToday)) { countdown(); render(); }
+  }, 60000);
+  if (window.claude && typeof window.claude.use === 'function') {
+    window.claude.use('artifact').then(function(api){ if (api) artifactApi = api; });
+  }
+})();
+</script>
+
+<script>
+// Service worker: registers, checks for a new version on every open / return to the app,
+// and reloads once as soon as the new version has taken over.
+(function(){
+  if (!('serviceWorker' in navigator)) return;
+  var reloaded = false;
+  navigator.serviceWorker.addEventListener('controllerchange', function(){
+    if (reloaded) return; reloaded = true; location.reload();
+  });
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('sw.js').then(function(reg){
+      function check(){ reg.update().catch(function(){}); }
+      check();
+      document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'visible') check(); });
+      setInterval(check, 15 * 60 * 1000);
+      reg.addEventListener('updatefound', function(){
+        var w = reg.installing; if (!w) return;
+        w.addEventListener('statechange', function(){
+          if (w.state === 'installed' && navigator.serviceWorker.controller) w.postMessage({type:'SKIP_WAITING'});
+        });
+      });
+      if (reg.waiting && navigator.serviceWorker.controller) reg.waiting.postMessage({type:'SKIP_WAITING'});
+    }).catch(function(){});
+  });
+})();
+</script>
+</body>
+</html>
