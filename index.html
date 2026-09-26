@@ -46,7 +46,7 @@ h1{margin:0;font-size:1.25em;font-weight:800;letter-spacing:-.01em}
 .jump button{grid-column:span 2;border:2px solid var(--line);background:var(--card);border-radius:6px;padding:8px 4px;font-weight:700;font-size:.85em;white-space:nowrap;min-height:44px;overflow:hidden;text-overflow:ellipsis}
 .jump button.hot{grid-column:span 3;border-color:var(--red);color:var(--red);background:var(--red-soft)}
 .jump button.late{grid-column:1 / -1;border-color:var(--gold);color:var(--gold);background:var(--gold-soft)}
-.jump button.ref{grid-column:1 / -1}
+.jump button.ref{grid-column:span 3}
 .jump button.active{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 .jump button.hot.active{background:var(--red);border-color:var(--red);color:#fff}
 .jump button.late.active{background:var(--gold);border-color:var(--gold);color:#fff}
@@ -62,6 +62,14 @@ section{margin-top:24px}
 .day .tally.late{color:var(--gold)}
 section.big .day{border-bottom-color:var(--red)}
 section.big .day h2{color:var(--red)}
+section.after .day{border-bottom-color:var(--gold)}
+section.after .day h2{color:var(--gold)}
+.jump button.after{grid-column:span 3;border-color:var(--gold);color:var(--gold);background:var(--gold-soft)}
+.jump button.after.active{background:var(--gold);border-color:var(--gold);color:#fff}
+.acts{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:4px}
+.later{border:2px solid var(--gold);background:var(--gold-soft);color:var(--gold);border-radius:6px;padding:0 6px;font-weight:800;font-size:.7em;min-height:32px;min-width:44px;white-space:nowrap}
+li.done .later{display:none}
+.row button.defer{border-color:var(--gold);color:var(--gold);background:var(--gold-soft)}
 section.over .day{border-bottom-color:var(--gold)}
 section.over .day h2{color:var(--gold)}
 .note{font-size:.9em;font-weight:700;color:var(--ink2);margin:10px 0 0}
@@ -144,7 +152,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px soli
 </head>
 <body>
 
-<script id="state" type="application/json">{"updatedAt":1790070273826,"sections":[{"id":"tmr","title":"Wed 23 Sep","due":"2026-09-23","tasks":[{"id":"a1","t":"Check jacket pockets","done":true,"doneAt":1790070272474},{"id":"a2","t":"Check with TC if the last 2 chapters can be combined on Sunday 27/9","done":true,"doneAt":1790070273362},{"id":"umucef4j0","t":"Ask Pastor Kelvin to assist in opening prayer at the dinner","done":true,"doneAt":1790070273826}]},{"id":"wk","title":"By Sun 27 Sep","due":"2026-09-27","tasks":[{"id":"b1","t":"Ask TC if we need to give ang pao to Pr Gilbert","done":false},{"id":"b5","t":"After TC replies: tell the family whether the last 2 chapters are combined on Sunday 27/9","done":false},{"id":"b2","t":"Get new bed and wash mattress cover","done":false},{"id":"b3","t":"Bring groomsmen to buy what they need for their attire on the day","done":false},{"id":"b4","t":"Inform all relatives coming to dinner at HXC to arrive at 5.30pm for the tea ceremony","done":false}]},{"id":"nxt","title":"By Thu 1 Oct","due":"2026-10-01","tasks":[{"id":"c1","t":"Cut hair and shave","done":false},{"id":"c5","t":"If TC says yes: prepare ang pao for Pr Gilbert","done":false},{"id":"c4","t":"Iron the shirt with the birds design for Friday's ROM","done":false},{"id":"c2","t":"Pack: 2 jackets, 4 shirts, tie, belt, shoes, socks, white t-shirt from China, and clothes for 2 days in the hotel after the wedding","done":false},{"id":"c3","t":"Pack tea bags for the tea ceremony","done":false}]},{"id":"fri","title":"Fri 2 Oct","sub":"ROM ceremony","date":"2026-10-02","big":true,"tasks":[{"id":"d1","t":"Wear the ironed shirt with the birds design and jeans for the ROM ceremony","done":false},{"id":"d2","time":"1.45pm","t":"Bring father and yourself to church","done":false},{"id":"d3","t":"Back to United Point to check in all guests after ROM","done":false},{"id":"d4","time":"4.55pm","t":"Be at church for dinner with all family members — except father and 大妹、大嫂、小妹和妹夫","done":false}]},{"id":"sat","title":"Sat 3 Oct","sub":"Wedding day","date":"2026-10-03","big":true,"tasks":[{"id":"e1","time":"5.30am","t":"Dress up and get ready for photographs","done":false},{"id":"e2","time":"6.50am","t":"Be downstairs and get into the car with David to go one round at her unit. Ethan opens the car door for you","done":false},{"id":"e3","time":"7.00am","t":"At her unit for long-life noodles","done":false},{"id":"e4","time":"8.20am","t":"Get into Jun Quan's car to church with the 3 groomsmen and 洁莹","done":false},{"id":"e5","t":"Yiyi looks after the rings and ang pao. The other 2 look after the flower for father. Put all ang pao from guests in your jacket pocket, then pass to David at United Point","done":false}]}],"contacts":[{"id":"p1","who":"TC","role":"Wedding coordinator / church","phone":""},{"id":"p2","who":"Pr Gilbert","role":"Pastor","phone":""},{"id":"p3","who":"David","role":"Car on Saturday · collects the ang pao at United Point","phone":""},{"id":"p4","who":"Ethan","role":"Opens the car door, Saturday 6.50am","phone":""},{"id":"p5","who":"Jun Quan","role":"Drives you to church, Saturday 8.20am","phone":""},{"id":"p6","who":"Yiyi","role":"Holds the rings and ang pao","phone":""},{"id":"p7","who":"洁莹","role":"Rides to church with you on Saturday","phone":""},{"id":"p8","who":"Groomsman 1","role":"","phone":""},{"id":"p9","who":"Groomsman 2","role":"","phone":""},{"id":"p10","who":"Groomsman 3","role":"","phone":""}],"places":[{"id":"q1","who":"Church","role":"ROM Fri 1.45pm · dinner Fri 4.55pm · wedding Sat","addr":""},{"id":"q2","who":"United Point","role":"Guest check-in after ROM · ang pao handover","addr":""},{"id":"q3","who":"HXC","role":"Tea ceremony 5.30pm and dinner","addr":""},{"id":"q4","who":"Her unit","role":"Saturday 6.50am one round · 7.00am noodles","addr":""},{"id":"q5","who":"Hotel","role":"2 nights after the wedding","addr":""}]}</script>
+<script id="state" type="application/json">{"updatedAt":1790412097438,"sections":[{"id":"tmr","title":"Wed 23 Sep","due":"2026-09-23","tasks":[{"id":"a1","t":"Check jacket pockets","done":true,"doneAt":1790070272474},{"id":"a2","t":"Check with TC if the last 2 chapters can be combined on Sunday 27/9","done":true,"doneAt":1790070273362},{"id":"umucef4j0","t":"Ask Pastor Kelvin to assist in opening prayer at the dinner","done":true,"doneAt":1790070273826}]},{"id":"wk","title":"By Sun 27 Sep","due":"2026-09-27","tasks":[{"id":"b1","t":"Ask TC if we need to give ang pao to Pr Gilbert","done":false},{"id":"b5","t":"After TC replies: tell the family whether the last 2 chapters are combined on Sunday 27/9","done":false},{"id":"b2","t":"Get new bed and wash mattress cover","done":false},{"id":"b3","t":"Bring groomsmen to buy what they need for their attire on the day","done":false},{"id":"b4","t":"Inform all relatives coming to dinner at HXC to arrive at 5.30pm for the tea ceremony","done":false}]},{"id":"nxt","title":"By Thu 1 Oct","due":"2026-10-01","tasks":[{"id":"c1","t":"Cut hair and shave","done":false},{"id":"c5","t":"If TC says yes: prepare ang pao for Pr Gilbert","done":false},{"id":"c4","t":"Iron the shirt with the birds design for Friday's ROM","done":false},{"id":"c2","t":"Pack: 2 jackets, 4 shirts, tie, belt, shoes, socks, white t-shirt from China, and clothes for 2 days in the hotel after the wedding","done":false},{"id":"c3","t":"Pack tea bags for the tea ceremony","done":false}]},{"id":"fri","title":"Fri 2 Oct","sub":"ROM ceremony","date":"2026-10-02","big":true,"tasks":[{"id":"d1","t":"Wear the ironed shirt with the birds design and jeans for the ROM ceremony","done":false},{"id":"d2","time":"1.45pm","t":"Bring father and yourself to church","done":false},{"id":"d3","t":"Back to United Point to check in all guests after ROM","done":false},{"id":"d4","time":"4.55pm","t":"Be at church for dinner with all family members — except father and 大妹、大嫂、小妹和妹夫","done":false}]},{"id":"sat","title":"Sat 3 Oct","sub":"Wedding day","date":"2026-10-03","big":true,"tasks":[{"id":"e1","time":"5.30am","t":"Dress up and get ready for photographs","done":false},{"id":"e2","time":"6.50am","t":"Be downstairs and get into the car with David to go one round at her unit. Ethan opens the car door for you","done":false},{"id":"e3","time":"7.00am","t":"At her unit for long-life noodles","done":false},{"id":"e4","time":"8.20am","t":"Get into Jun Quan's car to church with the 3 groomsmen and 洁莹","done":false},{"id":"e5","t":"Yiyi looks after the rings and ang pao. The other 2 look after the flower for father. Put all ang pao from guests in your jacket pocket, then pass to David at United Point","done":false}]},{"id":"after","title":"After the wedding","sub":"Deferred — not counted until the big days are over","after":true,"tasks":[]}],"contacts":[{"id":"p1","who":"TC","role":"Wedding coordinator / church","phone":""},{"id":"p2","who":"Pr Gilbert","role":"Pastor","phone":""},{"id":"p3","who":"David","role":"Car on Saturday · collects the ang pao at United Point","phone":""},{"id":"p4","who":"Ethan","role":"Opens the car door, Saturday 6.50am","phone":""},{"id":"p5","who":"Jun Quan","role":"Drives you to church, Saturday 8.20am","phone":""},{"id":"p6","who":"Yiyi","role":"Holds the rings and ang pao","phone":""},{"id":"p7","who":"洁莹","role":"Rides to church with you on Saturday","phone":""},{"id":"p8","who":"Groomsman 1","role":"","phone":""},{"id":"p9","who":"Groomsman 2","role":"","phone":""},{"id":"p10","who":"Groomsman 3","role":"","phone":""}],"places":[{"id":"q1","who":"Church","role":"ROM Fri 1.45pm · dinner Fri 4.55pm · wedding Sat","addr":""},{"id":"q2","who":"United Point","role":"Guest check-in after ROM · ang pao handover","addr":""},{"id":"q3","who":"HXC","role":"Tea ceremony 5.30pm and dinner","addr":""},{"id":"q4","who":"Her unit","role":"Saturday 6.50am one round · 7.00am noodles","addr":""},{"id":"q5","who":"Hotel","role":"2 nights after the wedding","addr":""}]}</script>
 
 <header class="top">
   <div class="top-row">
@@ -176,7 +184,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px soli
   <button class="close" type="button" id="share-close" aria-label="Dismiss">×</button>
 </div>
 
-<!-- build 20260922-1013 -->
+<!-- build 20260926-1641 -->
 <script>
 (function(){
   var TEMPLATE = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
@@ -192,6 +200,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px soli
     if (localStorage.getItem(KEY + ':hide') === '1') document.documentElement.dataset.hide = '1';
   } catch (e) {}
   state.contacts = state.contacts || []; state.places = state.places || [];
+  if (!state.sections.some(function(x){ return x.after; })) state.sections.push({id:'after', title:'After the wedding', sub:'Deferred — not counted until the big days are over', after:true, tasks:[]});
 
   var main = document.getElementById('main'), jump = document.getElementById('jump');
   var CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>';
@@ -246,7 +255,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px soli
 
   /* ---------- render ---------- */
   function render(){
-    var total = 0, done = 0;
+    var total = 0, done = 0, deferred = 0;
     main.innerHTML = ''; jump.innerHTML = '';
     var overdue = [];
     state.sections.forEach(function(sec){ if (isLate(sec)) sec.tasks.forEach(function(t){ if (!t.done) overdue.push({t:t, from:sec}); }); });
@@ -255,21 +264,22 @@ button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px soli
 
     list.forEach(function(sec){
       var d = sec.tasks.filter(function(t){ return t.done; }).length;
-      if (!sec.over) { total += sec.tasks.length; done += d; }
+      if (!sec.over && !sec.after) { total += sec.tasks.length; done += d; }
+      if (sec.after) deferred = sec.tasks.length - d;
       var late = !sec.over && isLate(sec) && d < sec.tasks.length;
       var key = sectionDate(sec);
       var sub = sec.over ? sec.sub : (sec.sub ? sec.sub + ' · ' : '') + (key ? relLabel(key, !!sec.due) : '');
 
       var jb = document.createElement('button');
-      jb.textContent = sec.over ? 'Overdue · ' + sec.tasks.length : sec.title;
-      jb.className = sec.big ? 'hot' : sec.over ? 'late' : '';
+      jb.textContent = sec.over ? 'Overdue · ' + sec.tasks.length : sec.after ? 'After · ' + (sec.tasks.length - d) : sec.title;
+      jb.className = sec.big ? 'hot' : sec.over ? 'late' : sec.after ? 'after' : '';
       jb.dataset.sec = sec.id;
       jb.onclick = function(){ setActive(sec.id); document.getElementById('sec-' + sec.id).scrollIntoView({behavior:'smooth', block:'start'}); };
       jump.appendChild(jb);
 
       var s = document.createElement('section');
       s.id = 'sec-' + sec.id;
-      s.className = sec.big ? 'big' : sec.over ? 'over' : '';
+      s.className = sec.big ? 'big' : sec.over ? 'over' : sec.after ? 'after' : '';
       var all = sec.tasks.length && d === sec.tasks.length;
       s.innerHTML =
         '<div class="day"><h2>' + esc(sec.title) + '<small>' + esc(sub) + '</small></h2>' +
@@ -292,15 +302,18 @@ button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px soli
           '<button class="box" type="button" role="checkbox" aria-checked="' + t.done + '" aria-label="' + esc(t.t) + '">' + CHECK + '</button>' +
           '<button class="txt" type="button">' +
             (t.id === nextId ? '<span class="chip nextchip">Next</span>' : '') +
-            (sec.over ? '<span class="chip from">' + esc(home.title) + '</span>' : '') +
+            (sec.over ? '<span class="chip from">' + esc(home.title) + '</span>' : sec.after && t.from ? '<span class="chip from">was ' + esc(t.from) + '</span>' : '') +
             (t.time ? '<span class="chip time">' + esc(t.time) + '</span>' : '') + esc(t.t) +
             (delta ? '<span class="delta">' + esc(delta) + '</span>' : '') +
           '</button>' +
-          '<button class="edit" type="button" aria-label="Edit task">' + PEN + '</button>';
+          '<div class="acts"><button class="edit" type="button" aria-label="Edit task">' + PEN + '</button>' +
+          ((sec.after || sec.big || t.done) ? '' : '<button class="later" type="button" aria-label="Do after the wedding">Later</button>') + '</div>';
         var toggle = function(){ t.done = !t.done; if (t.done) t.doneAt = Date.now(); else delete t.doneAt; dismissed = false; save(); render(); };
         li.children[0].onclick = toggle;
         li.children[1].onclick = toggle;
-        li.children[2].onclick = function(){ editingId = t.id; render(); var el = document.querySelector('.editor textarea'); if (el) el.focus(); };
+        var laterBtn = li.querySelector('.later');
+        if (laterBtn) laterBtn.onclick = function(){ deferTask(t, home); };
+        li.querySelector('.edit').onclick = function(){ editingId = t.id; render(); var el = document.querySelector('.editor textarea'); if (el) el.focus(); };
         ul.appendChild(li);
       });
 
@@ -323,7 +336,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px soli
 
     document.getElementById('fill').style.width = (total ? done / total * 100 : 0) + '%';
     document.getElementById('done-label').textContent = done + ' of ' + total + ' done';
-    document.getElementById('left-label').textContent = total - done ? (total - done) + ' to go' : 'Everything done 🎉';
+    document.getElementById('left-label').textContent = (total - done ? (total - done) + ' to go' : 'Everything done 🎉') + (deferred ? ' · ' + deferred + ' after' : '');
     trackActive();
     updateShareBar();
 
@@ -333,6 +346,15 @@ button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px soli
       var today = state.sections.filter(isToday)[0];
       if (today && !overdue.length) setTimeout(function(){ var el = document.getElementById('sec-' + today.id); if (el) el.scrollIntoView({block:'start'}); }, 50);
     }
+  }
+
+  function deferTask(t, home){
+    var after = state.sections.filter(function(x){ return x.after; })[0];
+    if (!after || home === after) return;
+    home.tasks = home.tasks.filter(function(x){ return x !== t; });
+    t.from = home.title; after.tasks.push(t);
+    editingId = null; save(); render();
+    setStatus('Moved to After the wedding: ' + t.t);
   }
 
   /* ---------- inline editor ---------- */
@@ -345,6 +367,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px soli
       '<label for="edit-time">Time (e.g. 6.50am) — leave blank if none</label><input type="text" id="edit-time" name="edit-time" value="' + esc(t.time || '') + '" autocomplete="off">' +
       '<label>Which day</label><div class="days"></div>' +
       '<div class="row"><button type="button" class="save">Save</button><button type="button" class="cancel">Cancel</button>' +
+      (home.after ? '' : '<button type="button" class="defer">Do after the wedding</button>') +
       '<button type="button" class="up"' + (idx === 0 ? ' disabled' : '') + '>Move up</button><button type="button" class="down"' + (idx === home.tasks.length - 1 ? ' disabled' : '') + '>Move down</button>' +
       '<button type="button" class="danger">Delete</button></div>';
     var target = home.id, days = li.querySelector('.days');
@@ -364,6 +387,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px soli
       editingId = null; save(); render();
     };
     li.querySelector('.cancel').onclick = function(){ editingId = null; render(); };
+    var deferBtn = li.querySelector('.defer'); if (deferBtn) deferBtn.onclick = function(){ deferTask(t, home); };
     li.querySelector('.up').onclick = function(){ home.tasks.splice(idx, 1); home.tasks.splice(idx - 1, 0, t); save(); render(); };
     li.querySelector('.down').onclick = function(){ home.tasks.splice(idx, 1); home.tasks.splice(idx + 1, 0, t); save(); render(); };
     li.querySelector('.danger').onclick = function(){
@@ -434,7 +458,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px soli
 
   /* ---------- text & sharing ---------- */
   function waLink(text){ return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text); }
-  function counts(){ var tot = 0, d = 0; state.sections.forEach(function(s){ s.tasks.forEach(function(t){ tot++; if (t.done) d++; }); }); return {tot:tot, done:d}; }
+  function counts(){ var tot = 0, d = 0; state.sections.forEach(function(s){ if (s.after) return; s.tasks.forEach(function(t){ tot++; if (t.done) d++; }); }); return {tot:tot, done:d}; }
   function progressText(includeDone){
     var c = counts();
     var lines = ['💍 Wedding checklist: ' + c.done + '/' + c.tot + ' done'];
@@ -442,7 +466,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px soli
       var items = sec.tasks.filter(function(t){ return includeDone || !t.done; });
       if (!items.length) return;
       var left = sec.tasks.filter(function(t){ return !t.done; }).length;
-      lines.push('', sec.title + (sec.sub ? ' · ' + sec.sub : '') + (isLate(sec) && left ? ' ⚠️ OVERDUE' : '') + ' (' + left + ' left):');
+      lines.push('', sec.title + (sec.after ? ' (deferred)' : (sec.sub ? ' · ' + sec.sub : '') + (isLate(sec) && left ? ' ⚠️ OVERDUE' : '') + ' (' + left + ' left)') + ':');
       lines.push(items.map(function(t){ return (t.done ? '✅ ' : '⬜ ') + (t.time ? t.time + ' ' : '') + t.t; }).join('\n'));
     });
     if (c.done === c.tot) lines.push('', 'Everything done 🎉');

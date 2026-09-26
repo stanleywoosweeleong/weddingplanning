@@ -1,7 +1,7 @@
-// Wedding checklist service worker — build 20260922-1013
+// Wedding checklist service worker — build 20260926-1641
 // index.html is fetched network-first so a new deploy shows up on the next open;
 // the cache only serves it when offline. Old caches are cleared on activate.
-var CACHE = 'wedding-20260922-1013';
+var CACHE = 'wedding-20260926-1641';
 var SHELL = ['./', './index.html', './manifest.webmanifest',
   './icons/icon-192.png', './icons/icon-512.png', './icons/maskable-512.png', './icons/apple-touch-icon.png'];
 
